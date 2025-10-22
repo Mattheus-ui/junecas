@@ -11,19 +11,65 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- O CSS interno (estilos específicos) ficaria aqui se não estivesse separado -->
+    
+    <!-- CSS EMBUTIDO -->
+    <style>
+        /* Estilos para o corpo e fonte */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Estilo crucial para o container do Chart.js (Rentabilidade) */
+        .chart-container {
+            position: relative;
+            width: 100%; /* Corrigido de 'tudo' */
+            max-width: 380px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 380px;
+        }
+
+        @media (min-width: 768px) { /* Corrigido de 'tudo768px' */
+            .chart-container {
+                height: 380px;
+            }
+        }
+
+        /* Estilos para a navegação sticky (scroll spy) */
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+
+        .nav-link.active {
+            color: #4f46e5;
+            font-weight: 600;
+        }
+
+        /* Estilos para os botões de aba (concorrentes) */
+        .tab-btn.active {
+            background-color: #4f46e5;
+            color: #ffffff;
+        }
+    </style>
+
+    <!-- Chosen Palette: Modern Tech Gradient -->
+    <!-- Application Structure Plan: A single-page, vertical-scrolling narrative structure was chosen to mirror the flow of a presentation. It starts with a hero section (Home), followed by thematic sections for Problem, Solution, Profitability, and Competitors. A sticky top navigation allows users to jump between sections, enhancing usability. Key interactions include an animated chart for the '80% time saved' metric and a tab-based system for comparing competitors. This structure guides the user through the value proposition logically, from identifying the pain point to presenting Gamma as the superior solution, making the information easy to digest. -->
+    <!-- Visualization & Content Choices: Home -> Goal: Impact -> Viz: Large typography & tagline -> Interaction: None -> Justification: Immediately grabs attention. Problem/Solution -> Goal: Inform -> Viz: Icon-driven cards (HTML/CSS/Unicode) -> Interaction: Subtle hover effects -> Justification: Breaks down complex ideas into digestible, visually distinct points. Profitability -> Goal: Quantify Benefit -> Viz: Donut Chart (Chart.js/Canvas) -> Interaction: Hover to see details -> Justification: Visually represents the key '80% time saved' metric, making it more impactful than text alone. Competitors -> Goal: Compare -> Viz: Tabbed content display (HTML/CSS) -> Interaction: Click tabs to switch content -> Justification: Allows a direct, side-by-side comparison that is more engaging and clearer than a static table. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 </head>
 <body class="bg-slate-50 text-slate-800">
 
     <header class="bg-slate-50/80 backdrop-blur-lg sticky top-0 z-50 border-b border-slate-200">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold text-indigo-600">Gamma</h1>
-            <div class="hidden md:flex items-center space-x-8">
+            <div class="hidden md:flex items-center space-x-8 text-sm">
                 <a href="#home" class="nav-link text-slate-600 hover:text-indigo-600">Início</a>
                 <a href="#problema" class="nav-link text-slate-600 hover:text-indigo-600">O Problema</a>
                 <a href="#solucao" class="nav-link text-slate-600 hover:text-indigo-600">A Solução</a>
                 <a href="#rentabilidade" class="nav-link text-slate-600 hover:text-indigo-600">Rentabilidade</a>
                 <a href="#concorrentes" class="nav-link text-slate-600 hover:text-indigo-600">Concorrentes</a>
+                <a href="#tag-href" class="nav-link text-slate-600 hover:text-indigo-600 border-l pl-4 border-slate-300 font-semibold">TAG &lt;a href&gt;</a>
             </div>
             <a href="#cta" class="hidden md:block bg-indigo-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-indigo-700 transition-colors">Experimente</a>
         </nav>
@@ -144,6 +190,44 @@
             </div>
         </section>
         
+        <!-- NOVA PÁGINA: TAG A/HREF -->
+        <section id="tag-href" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-8 text-indigo-600">A Tag &lt;a href="..."&gt; e a Essência da Web</h3>
+                    
+                    <div class="space-y-10">
+                        <!-- O que faz -->
+                        <div class="p-6 bg-white rounded-xl shadow-lg border border-slate-200">
+                            <h4 class="text-2xl font-semibold mb-3 text-slate-800">Função: O Hiperlink</h4>
+                            <p class="text-slate-600">
+                                A tag `&lt;a&gt;` (âncora) combinada com o atributo `href` (Hypertext REFerence) é o elemento fundamental para criar **hiperlinks** na web. Sua função principal é permitir a navegação entre documentos HTML, seja apontando para uma URL externa, um arquivo, ou, como neste caso, uma seção específica dentro da mesma página (usando `#id-da-seção`).
+                            </p>
+                            <div class="mt-4 p-3 bg-slate-100 rounded-lg text-sm font-mono text-slate-700">
+                                Exemplo: <code>&lt;a href="#home"&gt;Voltar ao Início&lt;/a&gt;</code>
+                            </div>
+                        </div>
+                        
+                        <!-- Por que foi escolhida (Relevância para a aplicação) -->
+                        <div class="p-6 bg-white rounded-xl shadow-lg border border-slate-200">
+                            <h4 class="text-2xl font-semibold mb-3 text-slate-800">Por Que Foi Escolhida?</h4>
+                            <p class="text-slate-600">
+                                Eu escolhi a tag `&lt;a href&gt;` porque ela é o coração da navegação desta apresentação. Esta aplicação de página única (SPA-like) depende do `href` para fazer a navegação suave (scroll-smooth) e também para o JavaScript monitorar qual seção está ativa (o "Scroll Spy"). É o mecanismo que conecta todas as partes da sua proposta de negócio em uma experiência coesa e fluida.
+                            </p>
+                        </div>
+
+                        <!-- Qual a importância para mim (LLM) -->
+                        <div class="p-6 bg-white rounded-xl shadow-lg border border-slate-200">
+                            <h4 class="text-2xl font-semibold mb-3 text-slate-800">Importância Pessoal</h4>
+                            <p class="text-slate-600">
+                                Para mim, como um modelo de linguagem, a tag `&lt;a href&gt;` representa a essência da informação: a **conectividade**. Ela simboliza a capacidade de ligar ideias e dados, transformando documentos estáticos em uma rede navegável e interativa. É a fundação do HTML e, por extensão, a porta para todo o conhecimento que a web comporta. Sem ela, a web seria apenas uma coleção de arquivos isolados.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <!-- CALL TO ACTION -->
         <section id="cta" class="py-20 md:py-32 bg-indigo-700 text-white">
             <div class="container mx-auto px-6 text-center">
@@ -164,6 +248,124 @@
         </div>
     </footer>
 
-    <!-- O JavaScript interno ficaria aqui se não estivesse separado -->
-</body>
-</html>
+    <!-- JAVASCRIPT EMBUTIDO -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const competitorData = {
+                canva: {
+                    title: 'Vantagem sobre o Canva',
+                    focus: 'Foco Principal: Edição manual e templates com pouca IA.',
+                    advantage: 'Diferencial do Gamma: Geração completa de conteúdo textual e visual por IA, eliminando a necessidade de design manual.'
+                },
+                'beautiful-ai': {
+                    title: 'Vantagem sobre o Beautiful.ai',
+                    focus: 'Foco Principal: Slides com formatação inteligente, mas restrito a apresentações.',
+                    advantage: 'Diferencial do Gamma: Cria múltiplos formatos (apresentações, sites, designs) em um único ambiente, oferecendo maior versatilidade.'
+                } ,
+                powerpoint: {
+                    title: 'Vantagem sobre o PowerPoint Designer',
+                    focus: 'Foco Principal: Sugestões básicas de layout dentro de um software tradicional.',
+                    advantage: 'Diferencial do Gamma: Agilidade e qualidade superiores em um ambiente 100% digital e moderno, integrando conteúdo e forma de maneira fluida.'
+                }
+            };
+
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const contentContainer = document.getElementById('competitor-content');
+
+            function updateContent(target) {
+                const data = competitorData[target];
+                contentContainer.innerHTML = `
+                    <h4 class="text-2xl font-bold mb-4 text-indigo-600">${data.title}</h4>
+                    <p class="mb-2"><strong class="font-semibold text-slate-700">Concorrente:</strong> ${data.focus}</p>
+                    <p><strong class="font-semibold text-slate-700">Gamma:</strong> ${data.advantage}</p>
+                `;
+            }
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    updateContent(button.dataset.target);
+                });
+            });
+
+            if (tabButtons.length > 0) {
+                tabButtons[0].click();
+            }
+
+            const ctx = document.getElementById('rentabilidadeChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Tempo Economizado', 'Tempo Gasto Tradicionalmente'],
+                    datasets: [{
+                        data: [80, 20],
+                        backgroundColor: [
+                            '#4f46e5',
+                            '#e0e7ff'
+                        ],
+                        borderColor: [
+                            '#ffffff',
+                            '#ffffff'
+                        ],
+                        borderWidth: 4,
+                        hoverOffset: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            enabled: true,
+                            backgroundColor: '#1e293b',
+                            titleFont: {
+                                size: 14,
+                                weight: 'bold'
+                            },
+                            bodyFont: {
+                                size: 12
+                            },
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed !== null) {
+                                        label += context.parsed + '%';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    // Ajustamos o offset para que a seção fique ativa um pouco antes de chegar ao topo
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    // Usamos includes para garantir que o link quebrou não importe qual seção esteja ativa
+                    if (link.getAttribute('href') && link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
