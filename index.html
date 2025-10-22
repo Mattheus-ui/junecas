@@ -4,45 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamma - Uma Solução em IA</title>
+    <!-- Tailwind CSS (CDN) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Modern Tech Gradient -->
-    <!-- Application Structure Plan: A single-page, vertical-scrolling narrative structure was chosen to mirror the flow of a presentation. It starts with a hero section (Home), followed by thematic sections for Problem, Solution, Profitability, and Competitors. A sticky top navigation allows users to jump between sections, enhancing usability. Key interactions include an animated chart for the '80% time saved' metric and a tab-based system for comparing competitors. This structure guides the user through the value proposition logically, from identifying the pain point to presenting Gamma as the superior solution, making the information easy to digest. -->
-    <!-- Visualization & Content Choices: Home -> Goal: Impact -> Viz: Large typography & tagline -> Interaction: None -> Justification: Immediately grabs attention. Problem/Solution -> Goal: Inform -> Viz: Icon-driven cards (HTML/CSS/Unicode) -> Interaction: Subtle hover effects -> Justification: Breaks down complex ideas into digestible, visually distinct points. Profitability -> Goal: Quantify Benefit -> Viz: Donut Chart (Chart.js/Canvas) -> Interaction: Hover to see details -> Justification: Visually represents the key '80% time saved' metric, making it more impactful than text alone. Competitors -> Goal: Compare -> Viz: Tabbed content display (HTML/CSS) -> Interaction: Click tabs to switch content -> Justification: Allows a direct, side-by-side comparison that is more engaging and clearer than a static table. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 380px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 320px;
-            max-height: 380px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 380px;
-            }
-        }
-        .nav-link {
-            transition: all 0.3s ease;
-        }
-        .nav-link.active {
-            color: #4f46e5;
-            font-weight: 600;
-        }
-        .tab-btn.active {
-            background-color: #4f46e5;
-            color: #ffffff;
-        }
-    </style>
+    <!-- O CSS interno (estilos específicos) ficaria aqui se não estivesse separado -->
 </head>
 <body class="bg-slate-50 text-slate-800">
 
@@ -195,125 +164,6 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            
-            const competitorData = {
-                canva: {
-                    title: 'Vantagem sobre o Canva',
-                    focus: 'Foco Principal: Edição manual e templates com pouca IA.',
-                    advantage: 'Diferencial do Gamma: Geração completa de conteúdo textual e visual por IA, eliminando a necessidade de design manual.'
-                },
-                'beautiful-ai': {
-                    title: 'Vantagem sobre o Beautiful.ai',
-                    focus: 'Foco Principal: Slides com formatação inteligente, mas restrito a apresentações.',
-                    advantage: 'Diferencial do Gamma: Cria múltiplos formatos (apresentações, sites, designs) em um único ambiente, oferecendo maior versatilidade.'
-                },
-                powerpoint: {
-                    title: 'Vantagem sobre o PowerPoint Designer',
-                    focus: 'Foco Principal: Sugestões básicas de layout dentro de um software tradicional.',
-                    advantage: 'Diferencial do Gamma: Agilidade e qualidade superiores em um ambiente 100% digital e moderno, integrando conteúdo e forma de maneira fluida.'
-                }
-            };
-
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const contentContainer = document.getElementById('competitor-content');
-
-            function updateContent(target) {
-                const data = competitorData[target];
-                contentContainer.innerHTML = `
-                    <h4 class="text-2xl font-bold mb-4 text-indigo-600">${data.title}</h4>
-                    <p class="mb-2"><strong class="font-semibold text-slate-700">Concorrente:</strong> ${data.focus}</p>
-                    <p><strong class="font-semibold text-slate-700">Gamma:</strong> ${data.advantage}</p>
-                `;
-            }
-
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    button.classList.add('active');
-                    updateContent(button.dataset.target);
-                });
-            });
-
-            if (tabButtons.length > 0) {
-                tabButtons[0].click();
-            }
-
-            const ctx = document.getElementById('rentabilidadeChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    labels: ['Tempo Economizado', 'Tempo Gasto Tradicionalmente'],
-                    datasets: [{
-                        data: [80, 20],
-                        backgroundColor: [
-                            '#4f46e5',
-                            '#e0e7ff'
-                        ],
-                        borderColor: [
-                            '#ffffff',
-                            '#ffffff'
-                        ],
-                        borderWidth: 4,
-                        hoverOffset: 8
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    cutout: '70%',
-                    plugins: {
-                        legend: {
-                            display: false
-                        },
-                        tooltip: {
-                            enabled: true,
-                            backgroundColor: '#1e293b',
-                            titleFont: {
-                                size: 14,
-                                weight: 'bold'
-                            },
-                            bodyFont: {
-                                size: 12
-                            },
-                            callbacks: {
-                                label: function(context) {
-                                    let label = context.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed !== null) {
-                                        label += context.parsed + '%';
-                                    }
-                                    return label;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            const sections = document.querySelectorAll('section');
-            const navLinks = document.querySelectorAll('.nav-link');
-
-            window.addEventListener('scroll', () => {
-                let current = '';
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop;
-                    if (pageYOffset >= sectionTop - 60) {
-                        current = section.getAttribute('id');
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').includes(current)) {
-                        link.classList.add('active');
-                    }
-                });
-            });
-        });
-    </script>
+    <!-- O JavaScript interno ficaria aqui se não estivesse separado -->
 </body>
 </html>
